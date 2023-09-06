@@ -5,15 +5,7 @@ interface ColorMappings {
   toleranceToColor: {
     [key: string]: string;
   };
-}
-
-interface MultiplierMappings {
-  suffixToMultiplier: {
-    [key: string]: number;
+  multiplierToColor: {
+    [key: string]: string;
   };
-}
-
-interface ResistorMappings {
-  multiplierMappings: MultiplierMappings;
-  colorMappings: ColorMappings;
 }

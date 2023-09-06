@@ -7,6 +7,7 @@ export interface Input {
 
 export interface Resistor {
   title: string;
+  id: string;
 }
 
 export const inputs: Input[] = [
@@ -20,7 +21,7 @@ export const inputs: Input[] = [
     name: "suffix-input",
     type: "select",
     id: "suffix-input",
-    value: ["/", "K", "M", "G", "m", "u", "n", "p", "f"],
+    value: ["/", "K", "M", "G"],
   },
   {
     name: "tollerance-input",
@@ -33,8 +34,98 @@ export const inputs: Input[] = [
 export const resistors: Resistor[] = [
   {
     title: "Otpornik sa 4 boje",
+    id: "4band",
   },
   {
     title: "Otpornik sa 5 boja",
+    id: "5band",
+  },
+];
+
+export const colorInputs: Input[] = [
+  {
+    name: "color-1-input",
+    type: "select",
+    id: "color-1-input",
+    value: [
+      "Black",
+      "Brown",
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Violet",
+      "Gray",
+      "White",
+    ],
+  },
+  {
+    name: "color-2-input",
+    type: "select",
+    id: "color-2-input",
+    value: [
+      "Black",
+      "Brown",
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Violet",
+      "Gray",
+      "White",
+    ],
+  },
+  {
+    name: "color-3-input",
+    type: "select",
+    id: "color-3-input",
+    value: [
+      "Black",
+      "Brown",
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Violet",
+      "Gray",
+      "White",
+    ],
+  },
+  {
+    name: "color-multiplier-input",
+    type: "select",
+    id: "color-multiplier-input",
+    value: [
+      "Black",
+      "Brown",
+      "Red",
+      "Orange",
+      "Yellow",
+      "Green",
+      "Blue",
+      "Violet",
+      "Gray",
+      "White",
+      "Gold",
+      "Silver",
+    ],
+  },
+  {
+    name: "color-tolerance-input",
+    type: "select",
+    id: "color-tolerance-input",
+    value: [
+      "Brown",
+      "Red",
+      "Green",
+      "Blue",
+      "Violet",
+      "Grey",
+      "Gold",
+      "Silver",
+    ],
   },
 ];

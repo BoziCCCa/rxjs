@@ -1,4 +1,4 @@
-import { Input, inputs, resistors } from "./UIconfig";
+import { Input, Resistor, inputs, resistors } from "./UIconfig";
 
 export function drawInit(host: HTMLElement) {
   const container = document.createElement("div");
@@ -7,7 +7,7 @@ export function drawInit(host: HTMLElement) {
   drawInputs(container);
 
   resistors.forEach((resistor) => {
-    drawResistorDiv(container, resistor.title);
+    drawResistorDiv(container, resistor);
   });
 
   host.appendChild(container);
@@ -81,16 +81,17 @@ function createSelectInput(
   host.appendChild(inputSelect);
 }
 
-function drawResistorDiv(host: HTMLDivElement, title: string) {
+function drawResistorDiv(host: HTMLDivElement, resistor: Resistor) {
   const resistorDiv = document.createElement("div");
   resistorDiv.classList.add("resistor-container");
 
   const titleElement = document.createElement("h2");
-  titleElement.textContent = title;
+  titleElement.textContent = resistor.title;
   resistorDiv.appendChild(titleElement);
 
   const stripesSpace = document.createElement("div");
   stripesSpace.classList.add("stripes-space");
+  stripesSpace.id = resistor.id;
   resistorDiv.appendChild(stripesSpace);
 
   host.appendChild(resistorDiv);

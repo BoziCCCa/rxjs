@@ -4,9 +4,16 @@ import {
   InputSelectSuffixInit,
   InputSelectToleranceInit,
 } from "./inputs";
-import { combineLatest, map, mergeMap, switchMap } from "rxjs";
+import { combineLatest, filter, map, mergeMap, switchMap, tap } from "rxjs";
 import { getColorMappings, getMultiplierMappings } from "./apiService";
-import { multiplyResistance, suffixToMultiplierr } from "./calculations";
+import {
+  calculateColors,
+  clearSrtipes,
+  calculateColorsFor4Bands,
+  calculateColorsFor5Bands,
+  drawBand,
+  multiplyResistance,
+} from "./calculations";
 
 drawInit(document.body);
 
@@ -15,6 +22,17 @@ const resistanceInput: HTMLInputElement =
 const toleranceInput: HTMLSelectElement =
   document.querySelector(".tollerance-input");
 const suffixInput: HTMLSelectElement = document.querySelector(".suffix-input");
+const div4Band: HTMLDivElement = <HTMLDivElement>(
+  document.getElementById("4band")
+);
+const div5Band: HTMLDivElement = <HTMLDivElement>(
+  document.getElementById("5band")
+);
+
+function clearBothStripes() {
+  clearSrtipes(div4Band);
+  clearSrtipes(div5Band);
+}
 
 const inputResistanceObservable = InputNumberInit(resistanceInput);
 const inputToleranceObservable = InputSelectToleranceInit(toleranceInput);
@@ -30,34 +48,31 @@ const combinedObservables = combineLatest([
   multiplierMapping$,
 ]);
 
-// combinedObservables
-//   .pipe(
-//     mergeMap(
-//       ([resistance, tolerance, suffix, colorMappings, multiplierMappings]) => {
-//         console.log(resistance, tolerance, suffix);
-//         return suffixToMultiplier(suffix, multiplierMappings).pipe(
-//           mergeMap((multiplier) =>
-//             multiplyResistance(<number>(<unknown>resistance), multiplier)
-//           )
-//         );
-//       }
-//     )
-//   )
-//   .subscribe((result) => {
-//     console.log("Result:", result);
-//   });
-
-combinedObservables.subscribe(
-  ([resistance, tolerance, suffix, colorMappings, multiplierMappings]) => {
-    console.log(resistance, tolerance, suffix, multiplierMappings);
-    suffixToMultiplierr(suffix, multiplierMappings)
-      .pipe(
-        mergeMap((multiplier) =>
-          multiplyResistance(parseFloat(resistance), multiplier)
+const mergedColors$ = combinedObservables.pipe(
+  switchMap(
+    ([resistance, tolerance, suffix, colorMappings, multiplierMappings]) => {
+      console.log(resistance, tolerance, suffix, multiplierMappings);
+      clearBothStripes();
+      return multiplyResistance(
+        parseFloat(resistance),
+        multiplierMappings[suffix]
+      ).pipe(
+        switchMap((multipliedResistance) =>
+          calculateColors(
+            multipliedResistance,
+            parseFloat(tolerance),
+            colorMappings
+          )
         )
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
-  }
+      );
+    }
+  )
 );
+
+mergedColors$.pipe(filter((color) => color.origin === 4)).subscribe((color) => {
+  drawBand(color.color, div4Band);
+});
+
+mergedColors$.pipe(filter((color) => color.origin === 5)).subscribe((color) => {
+  drawBand(color.color, div5Band);
+});

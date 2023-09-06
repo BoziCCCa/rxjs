@@ -3,12 +3,7 @@
     "/": 1,
     "K": 1e3,
     "M": 1e6,
-    "G": 1e9,
-    "m": 1e-3,
-    "u": 1e-6,
-    "n": 1e-9,
-    "p": 1e-12,
-    "f": 1e-15
+    "G": 1e9
   },
   "colorMappings": {
     "digitToColor": {
@@ -19,7 +14,7 @@
       "4": "Yellow",
       "5": "Green",
       "6": "Blue",
-      "7": "Purple",
+      "7": "Violet",
       "8": "Gray",
       "9": "White"
     },
@@ -29,9 +24,23 @@
       "0.5": "Green",
       "0.25": "Blue",
       "0.1": "Violet",
-      "0.05": "Gray",
+      "0.05": "Grey",
       "5": "Gold",
       "10": "Silver"
+    },
+    "multiplierToColor": {
+      "0": "Black",
+      "1": "Brown",
+      "2": "Red",
+      "3": "Orange",
+      "4": "Yellow",
+      "5": "Green",
+      "6": "Blue",
+      "7": "Violet",
+      "8": "Gray",
+      "9": "White",
+      "-1": "Gold",
+      "-2": "Silver"
     }
   }
 }
