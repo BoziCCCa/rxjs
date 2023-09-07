@@ -38,7 +38,7 @@ export function multiplyResistance(
 function getNumberOfZerosObservable(
   resistanceString: string,
   subtractor: number,
-  colorMappings: ColorMappings,
+  colorMappings: DigitToColorMappings,
   origin: number
 ): Observable<Color> {
   return of(resistanceString.split("").length - subtractor).pipe(
@@ -53,7 +53,7 @@ function getNumberOfZerosObservable(
 }
 function getToleranceObservable(
   tolerance: number,
-  colorMappings: ColorMappings,
+  colorMappings: DigitToColorMappings,
   origin: number
 ): Observable<Color> {
   return of(tolerance).pipe(
@@ -70,7 +70,7 @@ function getToleranceObservable(
 function getSignificantDigitsObservable(
   resistanceString: string,
   indexRange: number,
-  colorMappings: ColorMappings,
+  colorMappings: DigitToColorMappings,
   origin: number
 ): Observable<Color> {
   return of(...resistanceString.split("").slice(0, indexRange)).pipe(
@@ -86,7 +86,7 @@ function getSignificantDigitsObservable(
 export function calculateColorsFor4Bands(
   multipliedResistance: number,
   tolerance: number,
-  colorMappings: ColorMappings
+  colorMappings: DigitToColorMappings
 ) {
   const resistanceString = multipliedResistance.toString();
   const significantDigit$ = getSignificantDigitsObservable(
@@ -120,7 +120,7 @@ export function calculateColorsFor4Bands(
 export function calculateColorsFor5Bands(
   multipliedResistance: number,
   tolerance: number,
-  colorMappings: ColorMappings
+  colorMappings: DigitToColorMappings
 ) {
   const resistanceString = multipliedResistance.toString();
   const significantDigit$ = getSignificantDigitsObservable(
@@ -155,7 +155,7 @@ export function calculateColorsFor5Bands(
 export function calculateColors(
   multipliedResistance: number,
   tolerance: number,
-  colorMappings: ColorMappings
+  colorMappings: DigitToColorMappings
 ) {
   console.log(multipliedResistance);
   const calculate4Band$ = calculateColorsFor4Bands(
@@ -180,4 +180,34 @@ export function drawBand(color: string, host: HTMLDivElement) {
 
 export function clearSrtipes(host: HTMLDivElement) {
   while (host.lastChild) host.removeChild(host.firstChild);
+}
+
+export function calculateResistance(
+  color1: string,
+  color2: string,
+  color3: string,
+  color4: string,
+  ColorToDigitMappings: ColorToDigitMappings
+) {}
+
+function calculateColorToSignificantDigit(
+  color: string,
+  mappings: ColorToDigitMappings
+) {
+  of(color).pipe(
+    map((color) => {
+      mappings.colorToDigit[color];
+    })
+  );
+}
+
+function calculateColorToMultiplier(
+  color: string,
+  mappings: ColorToDigitMappings
+) {
+  of(color).pipe(
+    map((color) => {
+      mappings.colorToMultiplier[color];
+    })
+  );
 }

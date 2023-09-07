@@ -1,4 +1,4 @@
-interface ColorMappings {
+interface DigitToColorMappings {
   digitToColor: {
     [key: string]: string;
   };
@@ -6,6 +6,18 @@ interface ColorMappings {
     [key: string]: string;
   };
   multiplierToColor: {
+    [key: string]: string;
+  };
+}
+
+interface ColorToDigitMappings {
+  colorToDigit: {
+    [key: string]: string;
+  };
+  colorToTolerance: {
+    [key: string]: string;
+  };
+  colorToMultiplier: {
     [key: string]: string;
   };
 }

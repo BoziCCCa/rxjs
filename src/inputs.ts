@@ -104,8 +104,5 @@ export function InputSelectColorInit(
     map(() => input.value)
   );
 
-  return merge(changeObservable, inputObservable).pipe(
-    debounceTime(1000),
-    distinctUntilChanged()
-  );
+  return merge(changeObservable, inputObservable).pipe(distinctUntilChanged());
 }

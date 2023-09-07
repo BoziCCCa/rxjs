@@ -5,7 +5,7 @@ import {
   InputSelectToleranceInit,
 } from "./inputs";
 import { combineLatest, filter, map, mergeMap, switchMap, tap } from "rxjs";
-import { getColorMappings, getMultiplierMappings } from "./apiService";
+import { getDigitToColorMappings, getMultiplierMappings } from "./apiService";
 import {
   calculateColors,
   clearSrtipes,
@@ -38,7 +38,7 @@ function clearBothStripes() {
 const inputResistanceObservable = InputNumberInit(resistanceInput);
 const inputToleranceObservable = InputSelectToleranceInit(toleranceInput);
 const inputSuffixObservable = InputSelectSuffixInit(suffixInput);
-const colorMapping$ = getColorMappings();
+const colorMapping$ = getDigitToColorMappings();
 const multiplierMapping$ = getMultiplierMappings();
 
 const combinedObservables = combineLatest([
