@@ -45,7 +45,23 @@ select {
 }
 
 .band-div {
-  height: 80%;
-  width: 10%;
+  height: 100px;
+  width: 20%;
   border: 1px solid black;
+}
+
+.resistor-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.resistor-left-side {
+  flex: 5;
+}
+
+.resistor-right-side {
+  flex: 5;
 }

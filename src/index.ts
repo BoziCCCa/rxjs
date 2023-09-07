@@ -14,6 +14,7 @@ import {
   drawBand,
   multiplyResistance,
 } from "./calculations";
+import { drawInitResistorsForBands } from "./ui/colorToResistanceUI";
 
 drawInit(document.body);
 

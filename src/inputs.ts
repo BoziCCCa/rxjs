@@ -81,3 +81,31 @@ export function InputSelectSuffixInit(
     distinctUntilChanged()
   );
 }
+
+export function InputSelectColorInit(
+  input: HTMLSelectElement
+): Observable<string> {
+  let blankOptionRemoved = false;
+
+  const changeObservable = fromEvent(input, "change").pipe(
+    map(() => {
+      if (!blankOptionRemoved) {
+        const blankOption = input.querySelector('option[value=""]');
+        if (blankOption) {
+          input.removeChild(blankOption);
+          blankOptionRemoved = true;
+        }
+      }
+      return input.value;
+    })
+  );
+
+  const inputObservable = fromEvent(input, "change").pipe(
+    map(() => input.value)
+  );
+
+  return merge(changeObservable, inputObservable).pipe(
+    debounceTime(1000),
+    distinctUntilChanged()
+  );
+}

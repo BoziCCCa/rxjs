@@ -25,9 +25,9 @@ function drawInputs(host: HTMLDivElement) {
       inputContainer.appendChild(labelInput);
     } else if (input.type === "select") {
       if (input.name === "suffix-input")
-        createSelectInput(inputContainer, input, "Sufiks:");
+        createSelectInput(inputContainer, input);
       else if (input.name === "tollerance-input")
-        createSelectInput(inputContainer, input, "Tolerancija:");
+        createSelectInput(inputContainer, input);
     }
   });
 
@@ -51,18 +51,14 @@ function createNumberInput(
   host.appendChild(inputText);
 }
 
-function createSelectInput(
-  host: HTMLDivElement,
-  input: Input,
-  labelText: string
-) {
+export function createSelectInput(host: HTMLDivElement, input: Input) {
   const inputSelect = document.createElement("select");
   inputSelect.classList.add(input.id);
   inputSelect.id = input.id;
   inputSelect.name = input.name;
 
   const label = document.createElement("label");
-  label.innerHTML = labelText;
+  label.innerHTML = input.label;
   label.classList.add("input-label");
   label.htmlFor = input.id;
 
