@@ -12,12 +12,12 @@ interface DigitToColorMappings {
 
 interface ColorToDigitMappings {
   colorToDigit: {
-    [key: string]: string;
+    [key: string]: number;
   };
   colorToTolerance: {
-    [key: string]: string;
+    [key: string]: number;
   };
   colorToMultiplier: {
-    [key: string]: string;
+    [key: string]: number;
   };
 }

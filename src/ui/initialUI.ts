@@ -21,7 +21,7 @@ function drawInputs(host: HTMLDivElement) {
 
   inputs.forEach((input) => {
     if (input.type === "number") {
-      createNumberInput(inputContainer, input, "Otpornost");
+      createNumberInput(inputContainer, input);
       inputContainer.appendChild(labelInput);
     } else if (input.type === "select") {
       if (input.name === "suffix-input")
@@ -34,16 +34,12 @@ function drawInputs(host: HTMLDivElement) {
   host.appendChild(inputContainer);
 }
 
-function createNumberInput(
-  host: HTMLDivElement,
-  input: Input,
-  placeholder: string
-) {
+function createNumberInput(host: HTMLDivElement, input: Input) {
   const inputText = document.createElement("input");
   inputText.type = input.type;
   inputText.classList.add(input.id);
   inputText.value = "";
-  inputText.placeholder = placeholder;
+  inputText.placeholder = input.label;
   inputText.id = input.id;
   inputText.name = input.name;
   inputText.step = "1";
@@ -69,6 +65,8 @@ export function createSelectInput(host: HTMLDivElement, input: Input) {
 
   (<string[]>input.value).forEach((element) => {
     const selectOption = document.createElement("option");
+    selectOption.style.backgroundColor = element;
+    if (element === "Black") selectOption.style.color = "White";
     selectOption.value = element;
     selectOption.text = element;
     inputSelect.appendChild(selectOption);

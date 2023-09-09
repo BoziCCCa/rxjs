@@ -17,11 +17,9 @@ export function InputNumberInit(input: HTMLInputElement): Observable<string> {
   return <Observable<string>>fromEvent(input, "input").pipe(
     map((ev: InputEvent) => {
       const inputValue = parseFloat((ev.target as HTMLInputElement).value);
-      return Number.isInteger(inputValue) && inputValue >= 0
-        ? inputValue.toString()
-        : null;
+      return inputValue;
     }),
-    filter((value) => value !== null),
+    filter((value) => value > 0),
     debounceTime(1000),
     distinctUntilChanged()
   );

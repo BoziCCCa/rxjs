@@ -34,12 +34,12 @@ export function getMultiplierMappings(): Observable<SuffixToMultiplierMapping> {
   );
 }
 
-export function getColorToDigitMappings(): Observable<DigitToColorMappings> {
+export function getColorToDigitMappings(): Observable<ColorToDigitMappings> {
   return from(
     fetch(`${apiUrl}/colorToDigitMappings`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Network response was not ok (${response.status})`);
+          throw new Error(`Network response was not ok (${response.status})%`);
         }
         return response.json();
       })

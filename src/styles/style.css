@@ -7,7 +7,7 @@
   margin: 20px;
 }
 
-.input-container input,
+.input-container-4band input,
 select {
   margin: 5px;
 }
@@ -35,7 +35,7 @@ select {
 
 .stripes-space {
   padding: 10px;
-  height: 200px;
+  height: 300px;
   border: 1px solid #ddd;
   background-color: #f5f5f5;
   display: flex;
@@ -64,4 +64,24 @@ select {
 
 .resistor-right-side {
   flex: 5;
+}
+
+header {
+  background-color: #ffff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 0 20px;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }

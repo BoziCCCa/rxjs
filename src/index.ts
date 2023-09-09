@@ -70,10 +70,7 @@ const mergedColors$ = combinedObservables.pipe(
   )
 );
 
-mergedColors$.pipe(filter((color) => color.origin === 4)).subscribe((color) => {
-  drawBand(color.color, div4Band);
-});
-
-mergedColors$.pipe(filter((color) => color.origin === 5)).subscribe((color) => {
-  drawBand(color.color, div5Band);
+mergedColors$.subscribe((color) => {
+  if (color.origin === 4) drawBand(color.color, div4Band);
+  else drawBand(color.color, div5Band);
 });
